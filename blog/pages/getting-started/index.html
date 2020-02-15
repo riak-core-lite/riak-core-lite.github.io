@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting Started | Riak Core Lite</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://riak-core-lite.github.io/blog/pages/getting-started/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Riak Core Lite Team">
+<meta property="og:site_name" content="Riak Core Lite">
+<meta property="og:title" content="Getting Started">
+<meta property="og:url" content="https://riak-core-lite.github.io/blog/pages/getting-started/">
+<meta property="og:description" content="Here's a video version of this guide:
+
+Prerequisites
+You need to have Erlang installed, go to Adopting Erlang's Setup Section if you don't.
+You need to have a recent rebar3 installed, check the rebar3">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-02-15T12:42:04+01:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://riak-core-lite.github.io/blog/">
+
+                <span id="blog-title">Riak Core Lite</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+                </li>
+<li>
+<a href="../../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="index.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Getting Started</a></h1>
+
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Here's a video version of this guide:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qQcmhg3P5mo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+<p>You need to have Erlang installed, go to <a class="reference external" href="https://www.adoptingerlang.org/docs/development/setup/">Adopting Erlang's Setup Section</a> if you don't.</p>
+<p>You need to have a recent <a class="reference external" href="https://www.rebar3.org/">rebar3</a> installed, check the <a class="reference external" href="https://www.rebar3.org/docs/getting-started">rebar3 getting started guide</a> if you don't.</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup</h2>
+<p>We are going to create a new project using a rebar3 template, but first we need to install it.</p>
+<p>Open <a class="reference external" href="https://github.com/riak-core-lite/rebar3_template_riak_core_lite/">https://github.com/riak-core-lite/rebar3_template_riak_core_lite/</a> in your browser and follow the instructions there, I will copy
+them here, but check that they match.</p>
+<p>First open a terminal and clone the template in the right local folder:</p>
+<pre class="code sh"><a name="rest_code_07dd48d471674283a13306d42681cd9f-1"></a>mkdir -p ~/.config/rebar3/templates
+<a name="rest_code_07dd48d471674283a13306d42681cd9f-2"></a>git clone https://github.com/riak-core-lite/rebar3_template_riak_core_lite.git ~/.config/rebar3/templates/rebar3_template_riak_core_lite
+</pre>
+<p>Then on the terminal, go to the root directory where you want to
+create your new project and run:</p>
+<pre class="code sh"><a name="rest_code_dceb025ab69f4bc88109737a423fbc01-1"></a>rebar3 new rebar3_riak_core_lite <span class="nv">name</span><span class="o">=</span>ricor
+</pre>
+<p>This will create a new project called <cite>ricor</cite> in the <cite>ricor</cite> folder,
+feel free to change the project name by changing it in the command
+above, just remember to replace every instance of <cite>ricor</cite> for your
+project's name in this guide.</p>
+<p>Now <cite>cd</cite> to your newly created project:</p>
+<pre class="code sh"><a name="rest_code_83f96bbfa0ab4a93aa0a73be78014d62-1"></a><span class="nb">cd</span> ricor
+</pre>
+<p>And build it:</p>
+<pre class="code sh"><a name="rest_code_84a6901a1bc64801b0cc33d5cab1d74a-1"></a>rebar3 release
+</pre>
+<p>When it finished building, try running it:</p>
+<pre class="code sh"><a name="rest_code_8d18ab47287240999bcaa389fb93bd1e-1"></a>./_build/default/rel/ricor/bin/ricor console
+</pre>
+<p>You should get a prompt similar to this one:</p>
+<pre class="literal-block">
+(ricor@127.0.0.1)1&gt;
+</pre>
+<p>Write the following command on it:</p>
+<pre class="code erl"><a name="rest_code_bb77d54ef7dd451bbbc60680a29dc714-1"></a><span class="go">ricor:ping().</span>
+</pre>
+<p>You should get a response similar to this one:</p>
+<pre class="code erl"><a name="rest_code_414da5f66e9a4a6c85dd0221fb6b579e-1"></a><span class="go">{pong,'ricor1@127.0.0.1', 9...8}</span>
+</pre>
+<p>The first item is the reply <cite>pong</cite>, the second is the node that
+replied and the third is a really long number that identifies the
+<cite>vnode</cite> that handled the request.</p>
+<p>Now quit the Erlang shell by writing <cite>q().</cite> and hitting enter.</p>
+</div>
+<div class="section" id="node-cluster-setup">
+<h2>3 Node Cluster Setup</h2>
+<p>Let's build a 3 node cluster on our machine.</p>
+<p>First we need to create 3 slighly different releases, the only
+differences are the ports they listen to and the node names, since
+we are running them on the same machine we don't want them to
+clash.</p>
+<p>For that we can run:</p>
+<pre class="code sh"><a name="rest_code_7b03327caf6b4b61b691415e6d62a4e6-1"></a>make devrel
+</pre>
+<p>After it finishes, open 3 terminals, run each command on one terminal:</p>
+<pre class="code sh"><a name="rest_code_64a6695056da410586c20672c379cd74-1"></a>make dev1-console
+<a name="rest_code_64a6695056da410586c20672c379cd74-2"></a>make dev2-console
+<a name="rest_code_64a6695056da410586c20672c379cd74-3"></a>make dev3-console
+</pre>
+<p>You can check that they are not clustered by running:</p>
+<pre class="code sh"><a name="rest_code_a9e4d165b4664605ab59ca4e2e94f7e3-1"></a>make devrel-status
+</pre>
+<p>It should show only node 1 with 100% of the ring.</p>
+<p>Now let's join them:</p>
+<pre class="code sh"><a name="rest_code_def57fbae34a4411b3ca09c450c5a254-1"></a>make devrel-join
+</pre>
+<p>Periodically check the ring status:</p>
+<pre class="code sh"><a name="rest_code_cc93879dca6f4347bea6cfddb8b92282-1"></a>make devrel-status
+</pre>
+<p>Eventually it will start migrating parts of the ring to node2 and node3, when it starts you can try running ping on any node:</p>
+<pre class="code erl"><a name="rest_code_347d56227d43414593a2e47a378cb31b-1"></a><span class="go">ricor:ping().</span>
+</pre>
+<p>And check which node replies.</p>
+<p>That's all, now you can start adding your own request handling
+logic in the <cite>ricor_vnode.erl</cite> file to handle your use cases.</p>
+<p>Have fun!</p>
+</div>
+</div>
+    </div>
+    
+
+</article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2020         <a href="mailto:luismarianoguerra@gmail.com">Riak Core Lite Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>
