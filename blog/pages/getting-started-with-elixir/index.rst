@@ -127,7 +127,7 @@ Now we can commit the plan:
 
 .. code-block:: iex
 
-   :riak_core_claimant.plan()
+   :riak_core_claimant.commit()
 
 Periodically run:
 
