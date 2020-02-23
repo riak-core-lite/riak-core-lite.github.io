@@ -57,7 +57,7 @@ After it starts you should see a prompt like this:
 
 On the prompt run:
 
-.. code-block:: iex
+.. code-block:: ex
 
    iex(dev@127.0.0.1)2> Ricorex.Service.ping()
 
@@ -111,7 +111,7 @@ Now open 3 terminals, on each run one of the following commands:
 
 On `node2` and `node3` run:
 
-.. code-block:: iex
+.. code-block:: ex
 
    :riak_core.join('node1@127.0.0.1')
 
@@ -119,25 +119,23 @@ On `node1` run:
 
 To see the planned changes in the ring:
 
-.. code-block:: iex
+.. code-block:: ex
 
    :riak_core_claimant.plan()
 
 Now we can commit the plan:
 
-.. code-block:: iex
+.. code-block:: ex
 
    :riak_core_claimant.commit()
 
 Periodically run:
 
-.. code-block:: iex
+.. code-block:: ex
 
    :riak_core_console.member_status([])
 
-You will see something like this:
-
-:::
+You will see something like this::
 
    ================================= Membership ==================================
    Status     Ring    Pending    Node
@@ -162,19 +160,28 @@ Once it finishes rebalancing it will look like this::
 
 Try:
 
-.. code-block:: iex
+.. code-block:: ex
 
    iex(node3@127.0.0.1)39> Ricorex.Service.ping(1)
+
+.. code-block:: ex
+
    {:pong, 2, :"node3@127.0.0.1", 936274486415109681974235595958868809467081785344}
 
-.. code-block:: iex
+.. code-block:: ex
 
    iex(node3@127.0.0.1)40> Ricorex.Service.ping(3)
+
+.. code-block:: ex
+
    {:pong, 4, :"node1@127.0.0.1", 616571003248974668617179538802181898917346541568}
 
-.. code-block:: iex
+.. code-block:: ex
 
    iex(node3@127.0.0.1)41> Ricorex.Service.ping(5)
+
+.. code-block:: ex
+
    {:pong, 6, :"node2@127.0.0.1",
     1118962191081472546749696200048404186924073353216}
 

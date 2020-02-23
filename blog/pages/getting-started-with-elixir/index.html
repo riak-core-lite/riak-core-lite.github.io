@@ -85,31 +85,31 @@ You also need to have Elixir installed, go to Elixir's install page for instruct
 <h2>Setup</h2>
 <p>We are going to create a new project using the Riak Core Lite Mix Task, but
 first we need to install it, run the following in a terminal:</p>
-<pre class="code sh"><a name="rest_code_1659a37a6075401984b80bee81d5d871-1"></a>mix archive.install hex rcl
+<pre class="code sh"><a name="rest_code_516d51ef39694f7f9bb607dd81272792-1"></a>mix archive.install hex rcl
 </pre>
 <p>Then on the terminal, go to the root directory where you want to
 create your new project and run:</p>
-<pre class="code sh"><a name="rest_code_b65c7373d7624e959303bca553fd0aad-1"></a>mix rcl new ricorex
+<pre class="code sh"><a name="rest_code_284a0c60ed654294939dde0b6d5310a2-1"></a>mix rcl new ricorex
 </pre>
 <p>Change <cite>ricorex</cite> above (and in the rest of the guide) for the name of your project.</p>
 <p>Now let's build it:</p>
-<pre class="code sh"><a name="rest_code_22575aff9c914d19b5acd3e7bd796ed1-1"></a><span class="nb">cd</span> ricorex
-<a name="rest_code_22575aff9c914d19b5acd3e7bd796ed1-2"></a>mix deps.get
-<a name="rest_code_22575aff9c914d19b5acd3e7bd796ed1-3"></a>mix compile
+<pre class="code sh"><a name="rest_code_dcf45d4ca3cb42c1b27fa7b7ecaf0e2d-1"></a><span class="nb">cd</span> ricorex
+<a name="rest_code_dcf45d4ca3cb42c1b27fa7b7ecaf0e2d-2"></a>mix deps.get
+<a name="rest_code_dcf45d4ca3cb42c1b27fa7b7ecaf0e2d-3"></a>mix compile
 </pre>
 <p>Let's start by running a single node:</p>
-<pre class="code sh"><a name="rest_code_cf8a373557314a6e96a0cb6b687d500f-1"></a>iex --name dev@127.0.0.1 -S mix run
+<pre class="code sh"><a name="rest_code_9bcc077d9b8642bf85b1b4c3e2e6f646-1"></a>iex --name dev@127.0.0.1 -S mix run
 </pre>
 <p>After it starts you should see a prompt like this:</p>
-<pre class="code sh"><a name="rest_code_fb19faf0a8b24ef39b74587b4eae8915-1"></a>iex<span class="o">(</span>dev@127.0.0.1<span class="o">)</span><span class="m">1</span>&gt;
+<pre class="code sh"><a name="rest_code_34bef5e586a74fda8d5351adde699064-1"></a>iex<span class="o">(</span>dev@127.0.0.1<span class="o">)</span><span class="m">1</span>&gt;
 </pre>
 <p>(You may see many logs too, hit enter to get the prompt again)</p>
 <p>On the prompt run:</p>
-<pre class="code iex"><a name="rest_code_777047863c2945ec98d0c49ef690da42-1"></a><span class="go">iex(dev@127.0.0.1)2&gt; Ricorex.Service.ping()</span>
+<pre class="code ex"><a name="rest_code_af9509fefb5e4ee494bae8758c433328-1"></a><span class="n">iex</span><span class="p">(</span><span class="n">dev</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">2</span><span class="o">&gt;</span> <span class="nc">Ricorex.Service</span><span class="o">.</span><span class="n">ping</span><span class="p">()</span>
 </pre>
 <p>Remember to change <cite>Ricorex</cite> for your project's name if you changed it.</p>
 <p>The output should look something like:</p>
-<pre class="code ex"><a name="rest_code_8c6918147451439eba7d54160f9f6a92-1"></a><span class="p">{</span><span class="ss">:pong</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:"dev@127.0.0.1"</span><span class="p">,</span> <span class="mi">936274486415109681974235595958868809467081785344</span><span class="p">}</span>
+<pre class="code ex"><a name="rest_code_a48c9b441f9c486b9fa0f82f2d9f38fb-1"></a><span class="p">{</span><span class="ss">:pong</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:"dev@127.0.0.1"</span><span class="p">,</span> <span class="mi">936274486415109681974235595958868809467081785344</span><span class="p">}</span>
 </pre>
 <p>(The last number may be different for you)</p>
 </div>
@@ -121,34 +121,33 @@ differences are the ports they listen to and the node names, since
 we are running them on the same machine we don't want them to
 clash.</p>
 <p>For that we can run:</p>
-<pre class="code sh"><a name="rest_code_36e060fa70724bd6bd7a0b8a4fa674d4-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node1 mix release node1
+<pre class="code sh"><a name="rest_code_1c10f248cb0a40e89241a95e439f758a-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node1 mix release node1
 </pre>
-<pre class="code sh"><a name="rest_code_ce47a6b6b40645718bdceb8d551e2d56-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node2 mix release node2
+<pre class="code sh"><a name="rest_code_b397a2f3985c41a2a8ec3b4df6868e72-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node2 mix release node2
 </pre>
-<pre class="code sh"><a name="rest_code_0478a9c23d67426b97e8eaf4ed69af58-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node3 mix release node3
+<pre class="code sh"><a name="rest_code_d779e714926a44f79a08c1d9adcdf1e3-1"></a><span class="nv">MIX_ENV</span><span class="o">=</span>node3 mix release node3
 </pre>
 <p>Now open 3 terminals, on each run one of the following commands:</p>
-<pre class="code sh"><a name="rest_code_5c934d44ce3c45a8920b25f840785768-1"></a>./_build/node1/rel/node1/bin/node1 start_iex
+<pre class="code sh"><a name="rest_code_cf52625453404da380b5ec275712b0df-1"></a>./_build/node1/rel/node1/bin/node1 start_iex
 </pre>
-<pre class="code sh"><a name="rest_code_eb8cd737274a4b7380c8a11bae1a2ad4-1"></a>./_build/node2/rel/node2/bin/node2 start_iex
+<pre class="code sh"><a name="rest_code_e1b5a0e9cf9d46adbdf2501eed65f852-1"></a>./_build/node2/rel/node2/bin/node2 start_iex
 </pre>
-<pre class="code sh"><a name="rest_code_7bf51c3e2de54ba899b8e73cc12c9e6d-1"></a>./_build/node3/rel/node3/bin/node3 start_iex
+<pre class="code sh"><a name="rest_code_1edbbbec72c647fbae94db525ac4d567-1"></a>./_build/node3/rel/node3/bin/node3 start_iex
 </pre>
 <p>On <cite>node2</cite> and <cite>node3</cite> run:</p>
-<pre class="code iex"><a name="rest_code_0fd42122b0bc4ed1b9ee97419baa33f5-1"></a><span class="go">:riak_core.join('node1@127.0.0.1')</span>
+<pre class="code ex"><a name="rest_code_2072c001bd404621b001c98fcddf04de-1"></a><span class="ss">:riak_core</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'node1@127.0.0.1'</span><span class="p">)</span>
 </pre>
 <p>On <cite>node1</cite> run:</p>
 <p>To see the planned changes in the ring:</p>
-<pre class="code iex"><a name="rest_code_46f7fc32f4cd4430ab0b69d5b44e1e68-1"></a><span class="go">:riak_core_claimant.plan()</span>
+<pre class="code ex"><a name="rest_code_2210253ae2954d3681ec11f33a142745-1"></a><span class="ss">:riak_core_claimant</span><span class="o">.</span><span class="n">plan</span><span class="p">()</span>
 </pre>
 <p>Now we can commit the plan:</p>
-<pre class="code iex"><a name="rest_code_1f213c8608714dcea5ca2f32b770e503-1"></a><span class="go">:riak_core_claimant.commit()</span>
+<pre class="code ex"><a name="rest_code_c85a30de72ea4d03bc23bbfe113950dd-1"></a><span class="ss">:riak_core_claimant</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre>
 <p>Periodically run:</p>
-<pre class="code iex"><a name="rest_code_55db43f007094274826b551651d8ab8d-1"></a><span class="go">:riak_core_console.member_status([])</span>
+<pre class="code ex"><a name="rest_code_5e108183d33744b4859ba6ae57cb0cad-1"></a><span class="ss">:riak_core_console</span><span class="o">.</span><span class="n">member_status</span><span class="p">([])</span>
 </pre>
 <p>You will see something like this:</p>
-<p>::</p>
 <pre class="literal-block">
 ================================= Membership ==================================
 Status     Ring    Pending    Node
@@ -172,15 +171,18 @@ valid      32.8%      --      'node3@127.0.0.1'
 Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 </pre>
 <p>Try:</p>
-<pre class="code iex"><a name="rest_code_b1f670ea121f4fd4b3b6037d6ed4d56a-1"></a><span class="go">iex(node3@127.0.0.1)39&gt; Ricorex.Service.ping(1)</span>
-<a name="rest_code_b1f670ea121f4fd4b3b6037d6ed4d56a-2"></a><span class="go">{:pong, 2, :"node3@127.0.0.1", 936274486415109681974235595958868809467081785344}</span>
+<pre class="code ex"><a name="rest_code_1987e7bd10c748ee831552b617138720-1"></a><span class="n">iex</span><span class="p">(</span><span class="n">node3</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">39</span><span class="o">&gt;</span> <span class="nc">Ricorex.Service</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre>
-<pre class="code iex"><a name="rest_code_94379444f9cd4a86a647c86de9f001e2-1"></a><span class="go">iex(node3@127.0.0.1)40&gt; Ricorex.Service.ping(3)</span>
-<a name="rest_code_94379444f9cd4a86a647c86de9f001e2-2"></a><span class="go">{:pong, 4, :"node1@127.0.0.1", 616571003248974668617179538802181898917346541568}</span>
+<pre class="code ex"><a name="rest_code_7dfefbcd999845f885c91f7d43f36b7b-1"></a><span class="p">{</span><span class="ss">:pong</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:"node3@127.0.0.1"</span><span class="p">,</span> <span class="mi">936274486415109681974235595958868809467081785344</span><span class="p">}</span>
 </pre>
-<pre class="code iex"><a name="rest_code_d87d336ac508461ab9c27f7baf7dbb56-1"></a><span class="go">iex(node3@127.0.0.1)41&gt; Ricorex.Service.ping(5)</span>
-<a name="rest_code_d87d336ac508461ab9c27f7baf7dbb56-2"></a><span class="go">{:pong, 6, :"node2@127.0.0.1",</span>
-<a name="rest_code_d87d336ac508461ab9c27f7baf7dbb56-3"></a><span class="go"> 1118962191081472546749696200048404186924073353216}</span>
+<pre class="code ex"><a name="rest_code_1d2ae2f7349f43e3802f9ad4eda84d14-1"></a><span class="n">iex</span><span class="p">(</span><span class="n">node3</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">40</span><span class="o">&gt;</span> <span class="nc">Ricorex.Service</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre>
+<pre class="code ex"><a name="rest_code_1b23f8a8fa1042a9bd89ca6658a2b7c2-1"></a><span class="p">{</span><span class="ss">:pong</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="ss">:"node1@127.0.0.1"</span><span class="p">,</span> <span class="mi">616571003248974668617179538802181898917346541568</span><span class="p">}</span>
+</pre>
+<pre class="code ex"><a name="rest_code_cb337329857540a495b2a433ad89dba0-1"></a><span class="n">iex</span><span class="p">(</span><span class="n">node3</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">41</span><span class="o">&gt;</span> <span class="nc">Ricorex.Service</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre>
+<pre class="code ex"><a name="rest_code_d32c3bbe5da64c92a4e15e9bf6b38371-1"></a><span class="p">{</span><span class="ss">:pong</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="ss">:"node2@127.0.0.1"</span><span class="p">,</span>
+<a name="rest_code_d32c3bbe5da64c92a4e15e9bf6b38371-2"></a> <span class="mi">1118962191081472546749696200048404186924073353216</span><span class="p">}</span>
 </pre>
 <p>As you can see, each request landed on a different node.</p>
 </div>
