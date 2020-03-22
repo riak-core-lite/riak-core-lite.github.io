@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://riak-core-lite.github.io/blog/galleries/rss.xml</loc>
-  <lastmod>2020-02-13T10:16:00Z</lastmod>
+  <lastmod>2020-03-22T14:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://riak-core-lite.github.io/blog/rss.xml</loc>
@@ -15,6 +15,6 @@
  </sitemap>
  <sitemap>
   <loc>https://riak-core-lite.github.io/blog/sitemap.xml</loc>
-  <lastmod>2020-02-23T15:57:00Z</lastmod>
+  <lastmod>2020-03-22T14:12:00Z</lastmod>
  </sitemap>
 </sitemapindex>
