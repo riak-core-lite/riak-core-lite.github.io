@@ -125,6 +125,18 @@ Now let's join them:
 
    make devrel-join
 
+Check the join plan:
+
+.. code-block:: sh
+
+   make devrel-cluster-plan
+
+Commit the join plan:
+
+.. code-block:: sh
+
+   make devrel-cluster-commit
+
 Periodically check the ring status:
 
 .. code-block:: sh

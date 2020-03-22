@@ -90,35 +90,35 @@ You need to have a recent rebar3 installed, check the rebar3">
 <p>Open <a class="reference external" href="https://github.com/riak-core-lite/rebar3_template_riak_core_lite/">https://github.com/riak-core-lite/rebar3_template_riak_core_lite/</a> in your browser and follow the instructions there, I will copy
 them here, but check that they match.</p>
 <p>First open a terminal and clone the template in the right local folder:</p>
-<pre class="code sh"><a name="rest_code_07dd48d471674283a13306d42681cd9f-1"></a>mkdir -p ~/.config/rebar3/templates
-<a name="rest_code_07dd48d471674283a13306d42681cd9f-2"></a>git clone https://github.com/riak-core-lite/rebar3_template_riak_core_lite.git ~/.config/rebar3/templates/rebar3_template_riak_core_lite
+<pre class="code sh"><a name="rest_code_db7034af4b9941ddbf520f88426c62df-1"></a>mkdir -p ~/.config/rebar3/templates
+<a name="rest_code_db7034af4b9941ddbf520f88426c62df-2"></a>git clone https://github.com/riak-core-lite/rebar3_template_riak_core_lite.git ~/.config/rebar3/templates/rebar3_template_riak_core_lite
 </pre>
 <p>Then on the terminal, go to the root directory where you want to
 create your new project and run:</p>
-<pre class="code sh"><a name="rest_code_dceb025ab69f4bc88109737a423fbc01-1"></a>rebar3 new rebar3_riak_core_lite <span class="nv">name</span><span class="o">=</span>ricor
+<pre class="code sh"><a name="rest_code_cd79bc1374d042f1afe471bae938106e-1"></a>rebar3 new rebar3_riak_core_lite <span class="nv">name</span><span class="o">=</span>ricor
 </pre>
 <p>This will create a new project called <cite>ricor</cite> in the <cite>ricor</cite> folder,
 feel free to change the project name by changing it in the command
 above, just remember to replace every instance of <cite>ricor</cite> for your
 project's name in this guide.</p>
 <p>Now <cite>cd</cite> to your newly created project:</p>
-<pre class="code sh"><a name="rest_code_83f96bbfa0ab4a93aa0a73be78014d62-1"></a><span class="nb">cd</span> ricor
+<pre class="code sh"><a name="rest_code_eecb0ad43fb8495291c57b14ca271f65-1"></a><span class="nb">cd</span> ricor
 </pre>
 <p>And build it:</p>
-<pre class="code sh"><a name="rest_code_84a6901a1bc64801b0cc33d5cab1d74a-1"></a>rebar3 release
+<pre class="code sh"><a name="rest_code_57a5dc49beb5408c82c47c1055097146-1"></a>rebar3 release
 </pre>
 <p>When it finished building, try running it:</p>
-<pre class="code sh"><a name="rest_code_8d18ab47287240999bcaa389fb93bd1e-1"></a>./_build/default/rel/ricor/bin/ricor console
+<pre class="code sh"><a name="rest_code_b61604bb566f4477a2bf4cf2b6293f10-1"></a>./_build/default/rel/ricor/bin/ricor console
 </pre>
 <p>You should get a prompt similar to this one:</p>
 <pre class="literal-block">
 (ricor@127.0.0.1)1&gt;
 </pre>
 <p>Write the following command on it:</p>
-<pre class="code erl"><a name="rest_code_bb77d54ef7dd451bbbc60680a29dc714-1"></a><span class="go">ricor:ping().</span>
+<pre class="code erl"><a name="rest_code_d58c7fa94bcd44599ce5664d441d2ad2-1"></a><span class="go">ricor:ping().</span>
 </pre>
 <p>You should get a response similar to this one:</p>
-<pre class="code erl"><a name="rest_code_414da5f66e9a4a6c85dd0221fb6b579e-1"></a><span class="go">{pong,'ricor1@127.0.0.1', 9...8}</span>
+<pre class="code erl"><a name="rest_code_19a3f40de3f44206bedd2eb57635c105-1"></a><span class="go">{pong,'ricor1@127.0.0.1', 9...8}</span>
 </pre>
 <p>The first item is the reply <cite>pong</cite>, the second is the node that
 replied and the third is a really long number that identifies the
@@ -133,25 +133,31 @@ differences are the ports they listen to and the node names, since
 we are running them on the same machine we don't want them to
 clash.</p>
 <p>For that we can run:</p>
-<pre class="code sh"><a name="rest_code_7b03327caf6b4b61b691415e6d62a4e6-1"></a>make devrel
+<pre class="code sh"><a name="rest_code_70e4493f118b4ee9b4c2b34f1758659d-1"></a>make devrel
 </pre>
 <p>After it finishes, open 3 terminals, run each command on one terminal:</p>
-<pre class="code sh"><a name="rest_code_64a6695056da410586c20672c379cd74-1"></a>make dev1-console
-<a name="rest_code_64a6695056da410586c20672c379cd74-2"></a>make dev2-console
-<a name="rest_code_64a6695056da410586c20672c379cd74-3"></a>make dev3-console
+<pre class="code sh"><a name="rest_code_86df03ff918e4c189c1ac509f53239fd-1"></a>make dev1-console
+<a name="rest_code_86df03ff918e4c189c1ac509f53239fd-2"></a>make dev2-console
+<a name="rest_code_86df03ff918e4c189c1ac509f53239fd-3"></a>make dev3-console
 </pre>
 <p>You can check that they are not clustered by running:</p>
-<pre class="code sh"><a name="rest_code_a9e4d165b4664605ab59ca4e2e94f7e3-1"></a>make devrel-status
+<pre class="code sh"><a name="rest_code_d8bc91df9a8c42958c49b2f182ab3416-1"></a>make devrel-status
 </pre>
 <p>It should show only node 1 with 100% of the ring.</p>
 <p>Now let's join them:</p>
-<pre class="code sh"><a name="rest_code_def57fbae34a4411b3ca09c450c5a254-1"></a>make devrel-join
+<pre class="code sh"><a name="rest_code_16c5fa1dec65489fafaf4eb0f368c69b-1"></a>make devrel-join
+</pre>
+<p>Check the join plan:</p>
+<pre class="code sh"><a name="rest_code_4067a2ff13544116b8827a24e9ff782b-1"></a>make devrel-cluster-plan
+</pre>
+<p>Commit the join plan:</p>
+<pre class="code sh"><a name="rest_code_2fd6a6143102451d908de0185e73858d-1"></a>make devrel-cluster-commit
 </pre>
 <p>Periodically check the ring status:</p>
-<pre class="code sh"><a name="rest_code_cc93879dca6f4347bea6cfddb8b92282-1"></a>make devrel-status
+<pre class="code sh"><a name="rest_code_9c91a75e9da34411bf225536ceb86f77-1"></a>make devrel-status
 </pre>
 <p>Eventually it will start migrating parts of the ring to node2 and node3, when it starts you can try running ping on any node:</p>
-<pre class="code erl"><a name="rest_code_347d56227d43414593a2e47a378cb31b-1"></a><span class="go">ricor:ping().</span>
+<pre class="code erl"><a name="rest_code_9bfe666ebf39445084b9f7842df81afe-1"></a><span class="go">ricor:ping().</span>
 </pre>
 <p>And check which node replies.</p>
 <p>That's all, now you can start adding your own request handling
